@@ -1,0 +1,65 @@
+<html>
+<body>
+<style>
+    .butt {
+	background:linear-gradient(to bottom, #0c47ad 5%, #0c47ad 100%);
+	background-color:#0c47ad;
+	border-radius:28px;
+	border:1px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Trebuchet MS;
+	font-size:17px;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #283966;
+}
+.butt:hover {
+	background:linear-gradient(to bottom, #0c47ad 5%, #0c47ad 100%);
+	background-color:#0c47ad;
+}
+.butt:active {
+	position:relative;
+	top:1px;
+}
+
+</style>
+
+
+ <h1 style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: large;">BMI Calculator</h1>
+ 
+ 
+    <div class="reform">
+        <form id="reform">
+            <h4 style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Weight:</h4>
+            <input type="number" name="username" placeholder="In kilograms (ex. 80 Kg)" step=".1" required/>
+            <h4 style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Height:</h4>
+            <input type="number"  class="comment" name="comment" placeholder="In meters (ex. 1.82)" step=".01" required></input> 
+        </form>
+        <div class="butt">Calculate</div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    
+    <script>
+    $(document).ready(function(){
+            $('.butt').click(function(){
+                var username =$('input[name="username"]').val();
+                var comment =$('input[name="comment"]').val();
+                 $.post('/',$('#reform').serialize()).done(
+                   function(data){
+                    if(data.redirect) {
+                    window.location.href=data.url;
+                    }
+                       
+                     console.log(username)
+                     console.log(comment)
+                    })
+            })
+        })
+    </script>
+
+
+</body>
+</html>
